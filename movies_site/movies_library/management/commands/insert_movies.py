@@ -7,8 +7,19 @@ import random
 class Command(BaseCommand):
     help = 'Generator of fake movies and actors'
 
+    def __validated_movies_count(self, number):
+        try:
+            number = int(number)
+        except ValueError:
+            self.stdout.write('error: --movies_count argument should be integer')
+        assert 0 < number <= 100, 'error: --movies_count argument should be from 1 to 100'
+
+
     def add_arguments(self, parser):
-        parser.add_argument('--movies_count', type=int, default=10)
+        parser.add_argument('--movies_count',
+                            type=self.__validated_movies_count,
+                            default=10,
+                            help='The number of movies to generate')
 
     def handle(self, *args, **options):
         self.stdout.write('Start generating movie data')
