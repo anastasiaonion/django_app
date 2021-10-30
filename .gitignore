@@ -130,3 +130,6 @@ dmypy.json
 
 # Pycharm folders
 .idea/
+
+# Project folders
+movies_site/movies_library/migrations/
